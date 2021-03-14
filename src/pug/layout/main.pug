@@ -1,0 +1,154 @@
+include ../utils/mixins
+block variables
+
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    title #{title}
+    meta(name="description", content=description)
+
+    block head
+
+  body(class=pageClass)
+    .wrapper
+      #app
+        include ../includes/modules/header
+        section.screen1
+          .container
+            h2.title.title__header.indent.col-md-6.col-sm-2 Top sneakers
+            .container
+              .row
+                .col-md-1.align-self-center.d-flex.justify-content-end
+                  img.arrow.arrow-back(src='/assets/img/arrow1.png')
+                .slider.col-md-10.d-flex.justify-content-center.col-sm-12
+                  .owl-carousel.owl-theme
+                    .item
+                      img.main-sneaker(src='/assets/img/sneakers.png' alt='1')
+                    .item
+                      img.main-sneaker(src='/assets/img/sneakers.png' alt='2')
+                    .item
+                      img.main-sneaker(src='/assets/img/sneakers.png' alt='3')
+                .col-md-1.align-self-center.d-flex.justify-content-start
+                  img.arrow.arrow-next(src='/assets/img/arrow2.png')
+            p.subtitle.offset-lg-2.col-lg-8.offset-md-0.col-md-12.col-sm-12
+              | It`s very comfortable shoose, that do nothing.
+              br
+              | 						I don`t know what i must write here. I don`t know what i must write here
+            a.btn.btn_header.col-md-4.offset-md-4.col-lg-2.offset-lg-5.col-sm-2(href='Shop.html') Shop
+
+        section.switch-section
+          .container
+            .row
+              h2.title.black.indent.d-flex.justify-content-center Choose your sneakers
+              .switch.offset-lg-2.col-lg-8.offset-md-0.col-md-12.col-sm-12.d-flex.justify-content-center
+                ul.d-flex
+                  li.switch__element
+                    a.switch__link(href='#') Ultraboots
+                  li.switch__element
+                    a.switch__link(href='#') NMD
+                  li.switch__element
+                    a.switch__link(href='#') Superstars
+                  li.switch__element
+                    a.switch__link(href='#') Slides
+                  li.switch__element
+                    a.switch__link(href='#') Runing
+              hr.line
+        section
+          .container
+            .row
+              h2.title.black.indent The gretest
+              .cardbar.d-flex.justify-content-between
+                #card.cardbar__card.col-lg-4.col-md-6.col-sm-12
+                  img.card__img.col-md-12(src='/assets/img/sneaker2.png')
+                  h3.card__title Longstep
+                  p.price 115$
+                .cardbar__card.col-lg-4.col-md-6.col-sm-12
+                  img.card__img.col-md-12(src='/assets/img/sneaker2.png')
+                  h3.card__title Longstep
+                  p.price 115$
+                .cardbar__card.col-lg-4.col-md-6.col-sm-12
+                  img.card__img.col-md-12(src='/assets/img/sneaker2.png')
+                  h3.card__title Longstep
+                  p.price 115$
+                .cardbar__card.col-lg-4.col-md-6.col-sm-12
+                  img.card__img.col-md-12(src='/assets/img/sneaker2.png')
+                  h3.card__title Longstep
+                  p.price 115$
+                .cardbar__card.col-lg-4.col-md-6.col-sm-12
+                  img.card__img.col-md-12(src='/assets/img/sneaker2.png')
+                  h3.card__title Longstep
+                  p.price 115$
+                .cardbar__card.col-lg-4.col-md-6.col-sm-12
+                  img.card__img.col-md-12(src='/assets/img/sneaker2.png')
+                  h3.card__title Longstep
+                  p.price 115$
+              a.btn.btn__catalog.col-lg-3.col-md-4.col-sm-2(href='#') Watch more
+        section.screen3
+          .container
+            .row
+              h2.title.indent Our Collection
+              .banners
+                a.btn.btn-man.col-md-2(href='#') Man
+                img.banner.banner-man.col-lg-6.col-sm-12(src='/assets/img/man.png')
+                a.btn.btn-women.col-md-2(href='#') Women
+                img.banner.banner-women.col-lg-6.col-sm-12(src='/assets/img/women.png')
+        section.screen4
+          .container
+            .row
+              h2.title.indent.d-flex.justify-content-center Our advantages
+              .advantages.d-flex
+                .advantege.col-md-4
+                  img.ad-icon(src='/assets/img/icon1.png' alt='')
+                  h3.ad-title Advantage
+                  p.subtitle.subtitle__fix
+                    | Only in our store you can buy original sneakers at the same price as in America.
+                .advantege.col-md-4
+                  img.ad-icon(src='/assets/img/icon1.png' alt='')
+                  h3.ad-title Advantage
+                  p.subtitle.subtitle__fix
+                    | Only in our store you can buy original sneakers at the same price as in America.
+                .advantege.col-md-4
+                  img.ad-icon(src='/assets/img/icon1.png' alt='')
+                  h3.ad-title Advantage
+                  p.subtitle.subtitle__fix
+                    | Only in our store you can buy original sneakers at the same price as in America.
+        section#about.screen5
+          .container
+            .row
+              h2.title.title__about.black.indent About us
+              img.img-about.col-lg-6.col-md-12.col-sm-12(src='/assets/img/about.png' alt='')
+              .about.col-lg-6.col-md-12.col-sm-12.float-end
+                h3.about-title Snekers from USA for you!
+                p.about-text
+                  | Some text which say something about us and how we`re work. Some text which say something about us and how we`re work. Some text which say something about us and how we`re work. Some text which say something about us and how we`re work
+                h3.about-title Something else
+                p.about-text
+                  | Some text which say something about us and how we`re work. Some text which say something about us and how we`re work.
+                .buttons
+                  a.btn-about(href='#') Shop
+                  a.btn-about.btn-about-second(href='#') Contacts
+                  a#page-top.scroll-to-top(href='')
+            img.up(src='../img/up.png' alt='up')
+        // poppup
+        #modal.popup
+          .popup__overlay
+            .popup__body
+              form(action='action_page.php')
+                .container
+                  h1.d-flex.justify-content-center Register
+                  .register__forms
+                    label.form__title(for='email') Email
+                    input.input(type='text' placeholder='Enter Email' name='email' required='')
+                    label.form__title(for='psw') Password
+                    input.input(type='password' placeholder='Enter Password' name='psw' required='')
+                    label.form__title(for='psw-repeat') Repeat Password
+                    input.input(type='password' placeholder='Repeat Password' name='psw-repeat' required='')
+                  .buttons.d-flex.justify-content-space-between
+                    a.btn.registerbtn.col-lg-6.col-md-6.col-sm-3 Register
+                    a.btn.registerbtn.registerbtn--white.col-lg-6.col-md-5.col-sm-2 Log in
+            a.close.d-flex(href='') X
+
+      include ../includes/modules/footer
+
+    block script

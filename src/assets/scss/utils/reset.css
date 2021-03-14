@@ -1,0 +1,33 @@
+a:hover {
+  color: #fff;
+}
+
+a:visited {
+  color: #fff;
+}
+
+a:link {
+  color: #fff;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+label {
+  display: block;
+}
+
+button {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  border-color: #fff;
+}
+/*# sourceMappingURL=reset.css.map */
