@@ -64,38 +64,38 @@ $(function () {
 		return location.href = 'productpage.html'
 });
 //каунтер стоимости на стр товара
-let calculate = document.getElementById("calculation");
-let count = document.getElementById("buttonCountNumber");
-calculation = document.getElementById("calculation").innerHTML;
+// let calculate = document.getElementById("calculation");
+// let count = document.getElementById("buttonCountNumber");
+// calculation = document.getElementById("calculation").innerHTML;
 
-document.getElementById("buttonCountPlus").onclick = function() {
-  let countPlus = count.innerHTML;
-  if(+countPlus <= 3){
-    count.innerHTML++;
-    let countPlus = count.innerHTML;
-    calculate.innerHTML = calculations(countPlus) ;
-  }
-}
+// document.getElementById("buttonCountPlus").onclick = function() {
+//   let countPlus = count.innerHTML;
+//   if(+countPlus <= 3){
+//     count.innerHTML++;
+//     let countPlus = count.innerHTML;
+//     calculate.innerHTML = calculations(countPlus) ;
+//   }
+// }
 
-document.getElementById("buttonCountMinus").onclick = function() {
-  let countMinus = count.innerHTML;
-  if(+countMinus >= 2){
-    count.innerHTML--;
-    let countMinus = count.innerHTML;
-    calculate.innerHTML = calculations(countMinus) ;
-  }
-}
+// document.getElementById("buttonCountMinus").onclick = function() {
+//   let countMinus = count.innerHTML;
+//   if(+countMinus >= 2){
+//     count.innerHTML--;
+//     let countMinus = count.innerHTML;
+//     calculate.innerHTML = calculations(countMinus) ;
+//   }
+// }
 
-document.getElementById("xl").onclick = function() {
-	let result = document.getElementById("calculation").innerHTML;
-	calculate.innerHTML = zzz(result);
-    }
-    zzz = (result) =>{
-    	return (+calculation)*2;
-    }
-    calculations = (count) => {
-  return (+count)*(+calculation);
-}
+// document.getElementById("xl").onclick = function() {
+// 	let result = document.getElementById("calculation").innerHTML;
+// 	calculate.innerHTML = zzz(result);
+//     }
+//     zzz = (result) =>{
+//     	return (+calculation)*2;
+//     }
+//     calculations = (count) => {
+//   return (+count)*(+calculation);
+// }
 //link home
 document.getElementById("home").onclick = function() {
 	return location.href = 'index.html'

@@ -114,6 +114,7 @@ module.exports = {
       ]
     }]
   },
+  
   resolve: {
     alias: {
       '~': PATHS.src,
@@ -140,6 +141,7 @@ module.exports = {
       jQuery: 'jquery',
       'window.jQuery': 'jquery'
     }),
+    
 
     // Automatic creation any html pages (Don't forget to RERUN dev server)
     // see more: https://github.com/vedees/webpack-template/blob/master/README.md#create-another-html-files

@@ -1,11 +1,12 @@
 @import "utils/vars";
-	
+@import "~bootstrap/scss/bootstrap";
 @import "utils/libs";
 @import "utils/mixins";
 @import "utils/fonts";
-@import "custom";
+@import './_custom.scss';
 @import "modules/header";
-@import "~bootstrap/scss/bootstrap";
+
+// @import '../../node_modules/bootstrap/scss/bootstrap';
 @import "utils/reset";
 @import "adaptability";
 
@@ -429,6 +430,7 @@ body{
 	opacity: 80%;
 }
 .up{
+	display: none;
 	align-items: center;
 	width: 50px;
 	height: 50px;
@@ -454,7 +456,7 @@ body{
     animation-timing-function: ease-in-out;
     -webkit-animation-timing-function: ease-in-out;
     visibility: visible !important;
-		padding-bottom: 500px;
+	padding-bottom: 500px;
 }
 .popup__overlay{
 	z-index: 111;
@@ -472,7 +474,7 @@ body{
 	z-index: 111;
 	width: 600px;
 	opacity: 100%;
-	background-color: #fff;
+	background-color: $white;
 	position: relative;
 	padding: 30px;
 }
@@ -481,7 +483,7 @@ body{
 	font-size: 36px;
 	line-height: 42px;
 	text-transform: uppercase;
-	color: #000;
+	color: $main-black;
 }
 .form__title{
 	font-size: 20px;
@@ -500,14 +502,14 @@ body{
 .registerbtn{
 	left: 50%;
 	margin-top: 30px;
-}
-.registerbtn--white{
-	font-size: 24px;
-	background-color: #fff;
-	color: #000;
-	padding: 10px;
-	padding-top: 15px;
-	margin-left: 10px;
+	.registerbtn--white{
+		font-size: 24px;
+		background-color: $white;
+		color: $main-black;
+		padding: 10px;
+		padding-top: 15px;
+		margin-left: 10px;
+	}
 }
 .popup__body{
 	display: block;
@@ -523,4 +525,9 @@ body{
 	display: block;
 	z-index: 12;
 }
-	
+@keyframes move{
+	0%{transform: translateY(-1000px);}
+	70%{transform: translateY(30px);}
+	90%{transform: translateY(-10px);}
+	100%{transform: translateY(0);}
+}
