@@ -8,8 +8,9 @@ import './assets/scss/main.scss'
 // import './assets/css/main.css'
 
 //Bootstarp 
-
-import { Tooltip, Toast, Popover } from 'bootstrap';
+// import "~bootstrap/scss/bootstrap";
+import 'bootstrap';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 // Vue.js

@@ -1,5 +1,5 @@
 @import "utils/vars";
-@import "adaptability";	
+	
 @import "utils/libs";
 @import "utils/mixins";
 @import "utils/fonts";
@@ -7,6 +7,7 @@
 @import "modules/header";
 @import "~bootstrap/scss/bootstrap";
 @import "utils/reset";
+@import "adaptability";
 
 
 

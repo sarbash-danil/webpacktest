@@ -19,6 +19,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     new webpack.SourceMapDevToolPlugin({
       filename: '[file].map'
     }),
+    
     new webpack.ProvidePlugin({
       $: './jquery-3.6.0',
   jQuery: './jquery-3.6.0',
