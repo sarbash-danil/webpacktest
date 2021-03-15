@@ -5,6 +5,7 @@ import "popper.js"
 import $ from "jquery"
 window.jQuery = $;
 window.$ = $;
+  
 
 $(function () {
     console.log("ghbdtn")
