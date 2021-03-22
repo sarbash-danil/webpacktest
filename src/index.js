@@ -9,7 +9,7 @@ import './assets/scss/main.scss'
 
 //Bootstarp 
 // import "~bootstrap/scss/bootstrap";
-import 'bootstrap';
+// import 'bootstrap';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -25,7 +25,7 @@ const app = new Vue({
 })
 
 // import $ from "jquery";
-import 'owl.carousel';
-import 'owl.carousel/dist/assets/owl.carousel.css';
+// import 'owl.carousel';
+// import 'owl.carousel/dist/assets/owl.carousel.css';
 
 

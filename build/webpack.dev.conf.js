@@ -1,7 +1,7 @@
 const webpack =  require('webpack')
 const merge = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.conf')
-require('../../vendors/jquery.js')
+// require('../../vendors/jquery.js')
 
 const devWebpackConfig = merge(baseWebpackConfig, {
   // DEV config
