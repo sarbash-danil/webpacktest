@@ -6,7 +6,7 @@
 		},
 		{
 			"name": "test-task",
-			"path": "c:\\Users\\sarba\\Documents\\GitHub\\test-task"
+			"path": "./GitHub\\test-task"
 		}
 	],
 	"settings": {}
