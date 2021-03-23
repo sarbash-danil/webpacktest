@@ -1,1 +1,17 @@
 // footer style
+@import "utils/vars";
+@import "utils/mixins";
+
+
+.footer{
+	background-color: $main-black;
+	text-align: center;
+	padding-top: 30px;
+	padding-bottom: 50px;
+	.footer__subtitle{
+		font-size: 14px;
+         @mixin AdForMobileL {
+            font-size: 10px;
+        }
+	}
+}

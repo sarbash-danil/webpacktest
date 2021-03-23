@@ -1,12 +1,11 @@
 @import "utils/vars";
 @import "utils/libs";
 @import "utils/mixins";
-@import "utils/fonts";
-@import './_custom.scss';
+@import "utils/fonts"; 
+
 @import "modules/header";
 @import "modules/footer";
-@import "./adaptability.scss";
-// @import '../../node_modules/bootstrap/scss/bootstrap';
+
 @import "utils/reset";
 
    .container{
@@ -22,65 +21,17 @@
 		bottom: 0;
 		z-index: 0;
 		border-bottom: 1px solid #8C8C8C;
+		@include AdForTablet {
+			display: none;
 		}
-  }
-  .header{
-	width: 100%;
-	display: flex;
-	.header__body{
-		width: $display;
-		margin: auto;
-		color: $white;
-		font-size: 18px;
-	  }
-  }
-  .logo{
-	font-weight: bold;;
-	text-transform: uppercase;
-	padding-top: 30px;
-	margin: 0;
-	margin-left: 30px;
-	justify-content: flex-start;
-	color: $white;
-	font-size: 28px;
-	padding-bottom: 10px;
-  }
-  .menu{
-	position: relative;
-	width: 100%;
-	z-index: 1;
-	ul{
-		margin: 0;
-		padding-left: 30px;
-		padding-top: 30px;
-		padding-bottom: 15px;
-		display: flex;
 	}
-  }
-  .menu .menu__element {
-	padding: 0;
-	font-size: 18px;
-	list-style: none;
-	color: $white;
-	text-decoration: none;
-	margin-right: 60px;
-  }
-  .menu__link:hover{
-	padding-bottom: 12px;
-	border-bottom: 4px solid $white;
-  }
-  .head-img{
-	min-width: 1000px;
-	display: flex;
-	justify-content: center;
-	margin: auto;
-	padding-top: 50px;
-  }
+		
+  } 
   .screen-one{
 	text-align: center;
 	margin: auto;
 	background-color: $grey3;
-	padding-bottom: 70px;
+	@include padd(0px 0px 70px 0px);
   }
   .title{
 	margin: 0;
@@ -88,12 +39,29 @@
 	color: $white;
 	font-weight: 600;
 	text-transform: uppercase;
+	@include AdForTablet {
+		font-size: 24px;
+	}
   }
   .subtitle{
 	margin: 0;
 	color: $white;
 	font-size: 18px;
 	line-height: 30px;
+	@include AdForTablet {
+		font-size: 14px;
+	}
+  }
+  .head-img{
+	min-width: 75%;
+	display: flex;
+	justify-content: center;
+	margin: auto;
+	padding-top: 50px;
+	@include AdForTablet {
+		min-width: 0;
+		width: 90%; 
+	}
   }
   .title__head{
 	font-size: 62px;
@@ -102,23 +70,39 @@
 	text-align: center;
 	justify-content: center;
 	display: flex;
-	width: 1000px;
+	width: 75%;
 	margin: auto;
 	margin-bottom: 30px;
+	@include AdForTablet {
+	  font-size: 48px;
+	  width: 90%;
+	  margin: auto;
+	  margin-bottom: 60px;
+	  margin-top: 30px;
+	}
+	@include AdForMobileL{
+		font-size: 36px;
+	}
   }
   .subtitle__head{
 	font-size: 20px;
 	margin-top: 15px;
-	width: 1000px;
+	width: 	75%;
 	margin: auto;
+	@include AdForTablet {
+		width: 90%
+	}
   }
   .btn{
 	background-color: $white;
 	color: $main-black;
-	padding: 15px 45px 15px 45px;
+	@include padd(15px 45px 15px 45px);
 	font-size: 20px;
 	display: block;
 	margin: auto;
+	@include AdForMobileL{
+		font-size: 14px;
+	}
 		&:hover{
 			background-color: #afafaf;
 			transition: 1s;
@@ -127,11 +111,12 @@
   .btn__head{
 	width: 230px;
 	margin-top: 60px;
+	@include AdForTablet {
+		width: 50%;
+	}
   }
-  
   .screen-two{
-	padding-top: 50px;
-	padding-bottom: 50px;
+	@include padd(50px 0px 50px 0px);
 	justify-content: center;
 	margin: auto;
 	background-color: $main-grey;
@@ -140,15 +125,22 @@
   .about{
 	display: flex;
 	width: $display;
+	@include AdForTablet {
+		flex-wrap: wrap;
+	}
 	.about__text{
-		padding-top: 70px;
+		@include padd(70px 0px 0px 0px);
 		text-align: center;
 		color: $white;
 		flex-wrap: wrap;
 	  }
-	  
 	  .about__subtitle{
 		font-size: 18px;
+		@include AdForTablet {
+			width: 80%;
+			margin: auto;
+			display: block;
+		}
 	  }
 	  .about__title{
 		margin-bottom: 40px;
@@ -156,6 +148,9 @@
 	  .about__btn{
 		width: 250px;
 		margin-top: 50px;
+		@include AdForMobileS{
+			width: 50%;
+		}
 	  }
   }
   .about__img{
@@ -163,32 +158,52 @@
 	width: 50%;
 	margin: 0 auto;
 	min-height: 500px;
+
+	@include AdForTablet {
+		width: 90%;
+	}
   }
-  
   .section-three{
-	padding-top: 50px;
-	padding-bottom:100px;
+	@include padd(50px 0px 100px 0px);
 	background-color: $grey4;
   }
   .travel{
-	width: $display;
+	width: 90%;
 	margin: auto;
+	@include AdForLaptop {
+		width: 100%;
+	}
 	.travel__subtitle{
 		width: 90%;
 		padding-top: 20px;
 		margin:auto;
 	  }
 	  .travel__text{
-		margin-bottom: 60px;
+		@include padd(0px 0px 60px 0px);
 		text-align: center;
+		@include AdForLaptop {
+			width: 100%;
+		}
 	  }
   }
   .list ul{
 	justify-content: space-around;
 	display: flex;
+	flex-wrap: wrap;
+	@include AdForLaptop{
+		
+		width: 100%;
+	}
 	.list__card{
 		width: 300px;
 		text-align: center;
+		@include AdForLaptop{
+			display: inline;
+			
+		}
+		@include AdForMobileL {
+			width: 75%;
+		}
 	  }
   }
   .card__img{
@@ -196,6 +211,10 @@
 	margin-bottom: 30px;
 	width: 300px;
 	height: 200px;
+	@include AdForMobileL {
+		width: 100%;
+	  	height: auto;
+	}
   }
   .card__title{
 	font-size: 24px;
@@ -205,59 +224,97 @@
 	text-align: center;
 	width: 100%;
 	margin: 0;
-	// padding-top: 70px;
-	// min-height: 500px;
 	position: relative;
-	/* margin-bottom: -35px; */
+	@include AdForLaptop {
+		padding-top: 0;
+	}
+	@include AdForMobileL {
+		min-height: 300px;
+	}
   }
   .bg_cit{
 	position: absolute;
 	width: 100%;
 	z-index: -1;
-	// top:-220px;
 	left: 0;
 	display: block;
+	@include AdForLaptop {
+		top:0;
+	}
   }
   .cit__text{
 	text-align: center;
-	padding-top: 240px;
+	@include padd(240px 0px 0px 0px);
 	margin: auto;
 	color: $white;
+	@include AdForMobileL {
+		padding-top: 100px;
+	}
   }
   .autor{
 	  margin-bottom: 200px;
   }
   .screen-five{
 	background-color: $main-grey;
-	padding-bottom: 100px;
+	@include padd(100px 0px 00px 0px);
+	@include AdForLaptop {
+		margin-top: -20px;
+	}
+	@include AdForMobileL{
+		padding-top: 0;
+	}
   }
   .contact{
-	width: $display;
+	width: 95% ;
 	margin: auto;
 	display: flex;
 	justify-content: space-around;
+	@include AdForLaptop {
+	   flex-wrap: wrap;
+	   width: 100%
+	}
   }
   .info{
-	padding-top: 120px;
+	@include padd(120px 0px 0px 0px);
 	text-align: center;
 	width: 50%;
+	@include AdForMobileL {
+		width: 64%;
+	}
 	.info__title{
 		margin-bottom: 40px;
+		@include AdForMobileL {
+			font-size: 24px;
+		}
 	  }
-	
+	  .info__title{
+		@include AdForMobileL {
+			font-size: 20px;
+		}
+	  }
   }
   .info_btn{
-		
 	width: 200px;
-	text-align: center;;
+	text-align: center;
+	margin-bottom: 70px;
+	@include AdForLaptop {
+		display: flex;
+		justify-content: center;
+	}
+	@include AdForMobileL{
+		width: 50%;
+	}
   }
-  
   .form{
 	margin-top: 80px;
 	font-size: 24px;
 	flex-wrap: wrap;
 	width: 50%;
-	padding-left: 50px;
+	@include padd(0px 0px 0px 50px);
+	@include AdForMobileL {
+		width: 80%;
+	  	padding-left: 0;
+	}
 	.form__input{
 		width: 100%;
 		display: inline-block;
@@ -269,25 +326,13 @@
 		margin-bottom: 30px;
 	  }
   }
-  
-  .footer{
-	background-color: $main-black;
-	text-align: center;
-	padding-top: 30px;
-	padding-bottom: 50px;
-	.footer__subtitle{
-		font-size: 14px;
-	  }
-	
-  }
   .dropmenu{
 	  display: none;
 	  visibility: hidden;
 	  color: $white;
 	  width: 100%;
 	  text-align: center;
-	  padding-top: 30px;
-	  padding-bottom: 30px;
+	  @include padd(30px 0px 30px 0px);
 	  background-color: $main-black;
 	  & .menu__element{
 			margin-bottom: 20px;
@@ -302,6 +347,12 @@
 	  position: absolute;
 	  right: 80px;
 	  top: 30px;
+	  @include AdForTablet {
+		display: block;
+	}
+	@include AdForMobileL{
+		right: 35px;
+	}
   }
   .show{
 	  display: block;

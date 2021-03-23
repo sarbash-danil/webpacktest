@@ -1,69 +1,66 @@
 // header style
-$main-gradient: linear-gradient(180deg, #222222 0%, #18BADD 98.59%);
-$white: #fff;
-$main-grey: #222222;
-
-.menu{
-	display: flex;
-    ul{
-        margin: 0px;
-        display: flex;
-    }
-    .menu__element {
-        font-size: 18px;
-        font-weight: bold;
-        padding-top: 35px;
-        padding-left: 30px;
-        padding-right: 30px;
-        padding-bottom: 20px;
-        text-decoration: none;
-        color: $white;
-        &:hover{
-            background-color: #333;
-        }
-    }
-}
-.gamburger{
-	padding: 0;
-	width: 30px;
-	height: 30px;
-	margin-left: auto;
-	margin-top: 30px;
-	display: none;
-	margin-right: 10px;
-	position: absolute;
-	right: 30px;
-	top: 0;
-}
-.logo{
-	padding-top: 31px;
-	text-decoration: none;
-	font-size: 28px;
-	line-height: 33px;
-	color: $white;
-	font-weight: bold;
-}
-.login{
-	min-width: 49px;
-	margin-right: 43px;
-	text-decoration: none;
-	font-size: 18px;
-	line-height: 21px;
-	color: $white;
-	text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5);
-}
-.navigation{
-	width: 100%
-}
-.user{
-	display: flex;
-	margin-top: 35px;
-}
-.icon{
-	margin-top: -10px;
-	width: 30px;
-}
+@import "utils/vars";
+@import "utils/mixins";
 .header{
-    display: flex;
-	background-color: $main-grey;
+	width: 100%;
+	display: flex;
+	.header__body{
+	   	width: $display;
+		margin: auto;
+		color: $white;
+		font-size: 18px;
+	  }
+  }
+  .logo{
+	font-weight: bold;;
+	text-transform: uppercase;
+	padding-top: 30px;
+	margin: 0;
+	margin-left: 30px;
+	justify-content: flex-start;
+	color: $white;
+	font-size: 28px;
+	padding-bottom: 10px;
+  }
+  .menu{
+	position: relative;
+	width: 100%;
+	z-index: 1;
+	@include AdForTablet {
+		display: flex;
+		justify-content: space-around;
+	}
+	ul{
+		margin: 0;
+		padding-left: 30px;
+		padding-top: 30px;
+		padding-bottom: 15px;
+		display: flex;
+		@include AdForTablet {
+			display: none;
+		}
+	  }
+   }
+  .menu .menu__element {
+	padding: 0;
+	font-size: 18px;
+	list-style: none;
+	color: $white;
+	text-decoration: none;
+	margin-right: 60px;
+	@mixin AdForMobileL {
+		margin-right: 30px;
+	}
+  }
+  .menu__link{
+	@include AdForTablet {
+	font-size: 28px;
+	}
+	@mixin AdForMobileL {
+		font-size: 18px;
+	}
+  	&:hover{
+	padding-bottom: 12px;
+	border-bottom: 4px solid $white;
+  }
 }
