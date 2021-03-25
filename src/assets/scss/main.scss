@@ -1,13 +1,11 @@
-@import "utils/vars";
-@import "utils/libs";
 @import "utils/mixins";
-@import "utils/fonts"; 
-
 @import "modules/header";
 @import "modules/footer";
+@import "utils/vars";
+@import "utils/libs";
 
+@import "utils/fonts"; 
 @import "utils/reset";
-
    .container{
 	background-color: $main-black;
 	position: relative;
@@ -353,7 +351,136 @@
 		right: 35px;
 	}
   }
-  .show{
-	  display: block;
-	  visibility: visible;
+
+  .popup{
+	display: none;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	  .popup__body{
+		  z-index: 4;
+		  display: flex;
+		  position: relative;
+		.choose-day{
+			border-radius: 0px 10px 10px 0px;
+			margin-top: 50px;
+			margin-bottom: 50px;
+			background-color: $main-grey;
+			padding: 60px 50px 20px 50px;
+			.cards{
+				display: flex;
+				margin-top: 30px;
+				margin-bottom: 30px;
+			}
+			.card__weather{
+				border-radius: 5px;
+				margin-right: 10px;
+				padding: 20px 20px 25px 20px;
+				border: 1px solid $white;
+				&:hover{
+					background-color: $white;
+					color: $main-black;
+					.subtitle__day--black{
+						color: $main-black;
+					}
+					.temp{
+						color: $main-black;
+					}
+				}
+				.subtitle__day--black{
+					color: $white;
+					font-size: 21px;
+					font-weight: bold;
+				}
+				.temp{
+					font-size: 30px;
+					text-align: center;
+					color: white;
+				}
+				
+			}
+			.weather__btn{
+				width: 50%;
+				margin: auto;
+				font-weight: bold;
+				text-align: center;
+				margin-top: 50px;
+			}
+		
+		}
+		.weather{
+			border-radius: 2%;
+			display: block;
+			width: 400px;
+			height: 500px;
+			background-color: rgb(109, 209, 255);
+			color: $white	;
+			padding: 35px;
+			.city{
+				font-size: 42px;
+				margin-top: 30px;
+			}
+			.weather__icon{
+				display: block;
+				width: 60px;
+				height: 60px;
+			}
+			.day{
+				font-size: 30px;
+			}
+			.temp{
+				font-size: 74px;
+				color: $white;
+				bottom: 15px;
+				position: absolute;
+			}
+			.status{
+				bottom: 10px;
+				position: absolute;
+				font-size: 40px;
+			}
+		}
+	}
+	.popup__overlay{
+		z-index: 3;
+		background-color: #333c;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.close{
+		&::after{
+			content: "";
+			position: absolute;
+			background-color: $white;
+			height: 4px;
+			width: 22px;
+			top: 0;
+			right: 0;
+			transform: rotate(45deg);
+		}
+		&::before{
+			content: "";
+			position: absolute;
+			background-color: $white;
+			height: 4px;
+			width: 22px;
+			top: 0;
+			right: 0;
+			transform: rotate(-45deg);
+		}
+	}
   }
+
+  .dropmenu-show,.popup__show{
+	display: block;
+	visibility: visible;
+	z-index: 12;
+}

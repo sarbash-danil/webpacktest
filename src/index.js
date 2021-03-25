@@ -1,5 +1,8 @@
-// JS
-import './js/index.js'
+import "jquery"
+import "popper.js"
+import $ from "jquery"
+window.jQuery = $;
+window.$ = $
 
 // SCSS
 import './assets/scss/main.scss'
@@ -7,6 +10,8 @@ import './assets/scss/main.scss'
 // CSS (example)
 // import './assets/css/main.css'
 
+// JS
+import './js/index.js'
 
 // Vue.js
 window.Vue = require('vue')
