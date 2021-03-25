@@ -4,6 +4,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
+// require('../vendors/jquery.js')
+const $ = require('jquery')
+
 
 
 const PATHS = {
@@ -20,6 +23,7 @@ module.exports = {
     paths: PATHS
   },
   entry: {
+    
     app: PATHS.src,
     module: `${PATHS.src}/index.js`,
   },
@@ -40,6 +44,18 @@ module.exports = {
       }
     }
   },
+  module: {
+    loaders: [
+        {
+            test: /\.(scss|sass)$/i,
+            include: [
+                path.resolve(__dirname, 'node_modules'),
+                path.resolve(__dirname, 'path/to/imported/file/dir'),
+            ],
+            loaders: ["css", "sass"]
+        },
+    ]
+},
   module: {
     rules: [{
       test: /\.pug$/,
@@ -116,7 +132,20 @@ module.exports = {
       'vue$': 'vue/dist/vue.js',
     }
   },
+  // plugins: [
+  //   new webpack.ProvidePlugin({
+  //     $: "jquery/dist/jquery.min.js",
+  //     jQuery: "jquery/dist/jquery.min.js",
+  //     "window.jQuery": "jquery/dist/jquery.min.js"
+  //   })
+  // ],
   plugins: [
+    // new webpack.ProvidePlugin({
+    //   $: "jquery/dist/jquery.min.js",
+    //   jQuery: "jquery/dist/jquery.min.js",
+    //   "window.jQuery": "jquery/dist/jquery.min.js"
+    // }),
+    
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
       filename: `${PATHS.assets}css/[name].[hash].css`,
@@ -126,7 +155,7 @@ module.exports = {
       { from: `${PATHS.src}/${PATHS.assets}fonts`, to: `${PATHS.assets}fonts` },
       { from: `${PATHS.src}/static`, to: '' },
     ]),
-    
+   
 
     ...PAGES.map(page => new HtmlWebpackPlugin({
       template: `${PAGES_DIR}/${page}`,
@@ -134,3 +163,4 @@ module.exports = {
     }))
   ],
 }
+

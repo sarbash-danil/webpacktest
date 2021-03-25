@@ -30,7 +30,7 @@ html(lang='en')
             | заслуживает более яркой, счастливой и активной жизни.
             | Я с удовольствием отвечу на все вопросы и помогу вам
             | раскрыть свой потенциал на 100 %.
-            a.btn.btn__head(href='') Раскрыть потенциал
+            a.btn.btn__head(href='#') Раскрыть потенциал
         section.screen-two
           .about
             img.about__img(src='./assets/img/img__about.jpg' alt='')
@@ -91,6 +91,31 @@ html(lang='en')
               input.form__input(type='text' placeholder='Почта')
               input.form__input(type='text' placeholder='Адрес')
               a.btn.info_btn(href='') Отправить
+        #modal.popup
+          .popup__overlay
+            .popup__body
+              .weather
+                h2.title.city Dubai
+                p.subtitle.day Sunday
+                p.wind 3
+                
+                p.temp 14
+                p.status sunny
+                
+              .choose-day
+                h2.title choose day
+                .cards
+                  .card.card__weather.card__weather--mon
+                    p.subtitle.subtitle__day--black Monday
+                    p.temp.temp__mon 20
+                  .card.card__weather.card__weather--tue
+                    p.subtitle.subtitle__day--black Tuesday
+                    p.temp.temp__tue 20
+                  .card.card__weather.card__weather--wen
+                    p.subtitle.subtitle__day--black Wensday
+                    p.temp.temp__wen 20
+                a.btn.weather__btn set day
+              a.close
         include ../includes/modules/footer
 
     block script

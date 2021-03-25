@@ -1,6 +1,9 @@
 const webpack =  require('webpack')
 const merge = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.conf')
+// require('../vendors/jquery.js')
+const $ = require('jquery')
+
 
 
 const devWebpackConfig = merge(baseWebpackConfig, {
@@ -32,3 +35,13 @@ const devWebpackConfig = merge(baseWebpackConfig, {
 module.exports = new Promise((resolve, reject) => {
   resolve(devWebpackConfig)
 })
+
+// module.exports = {
+//   plugins: [
+//     new webpack.ProvidePlugin({
+//       $: "jquery/dist/jquery.min.js",
+//       jQuery: "jquery/dist/jquery.min.js",
+//       "window.jQuery": "jquery/dist/jquery.min.js"
+//     })
+//   ],
+// };
