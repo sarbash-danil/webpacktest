@@ -12,11 +12,8 @@ module.exports = new Promise((resolve, reject) => {
   resolve(buildWebpackConfig)
 })
 
-
 module.exports = {
-  plugins: [
-
-    
+  plugins: [   
       new webpack.SourceMapDevToolPlugin({
         filename: '[file].map'
       }),
