@@ -45,7 +45,7 @@ html(lang='en')
                 | и предоставляю им все необходимое для того, чтобы добиться
                 | изменений к лучшему. С моей помощью вы научитесь решать
                 | проблемы, которые стоят на вашем пути к цели.
-              a.btn.about__btn(href='') Cвязаться со мной
+              a.btn.about__btn(href='' ) Cвязаться со мной
         section.section-three
           .travel
             .travel__text
@@ -98,7 +98,7 @@ html(lang='en')
                 h2.title.city Dubai
                 p.subtitle.day Sunday
                 p.wind 3
-                
+                .icon-weather
                 p.temp 14
                 p.status sunny
                 
@@ -116,6 +116,9 @@ html(lang='en')
                     p.temp.temp__wen 20
                 a.btn.weather__btn set day
               a.close
-        include ../includes/modules/footer
+      .scrollToTop#scrollToTop 
+        p up
+
+    include ../includes/modules/footer
 
     block script
