@@ -1,6 +1,7 @@
 const merge = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.conf')
 const $ = require('jquery')
+const axios = require('axios')
 
 const buildWebpackConfig = merge(baseWebpackConfig, {
   // BUILD config
