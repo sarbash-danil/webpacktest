@@ -332,6 +332,9 @@
 	  @include padd(30px 0px 30px 0px);
 	  background-color: $main-black;
 	  z-index: 11;
+	  &:nth-child(5){
+		  color: red;
+	  }
 	  & .menu__element,.menu__link{
 		  	color: $white;
 			margin-bottom: 20px;
@@ -434,7 +437,8 @@
 			display: block;
 			width: 400px;
 			height: 500px;
-			background-color: rgb(109, 209, 255);
+			background-image: url('https://avatanplus.com/files/resources/original/5a34ae77dd73f1605dc98463.png');
+			// background-color: rgb(109, 209, 255);
 			color: $white	;
 			padding: 35px;
 			.city{

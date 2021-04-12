@@ -1,7 +1,80 @@
+import { Callbacks } from "jquery";
+
 export {WeatherSet,myLocation,WeatherSetLoc};
+let z;
+let str;
+function myLocation() {   
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+    }
+    function showPosition(position) {
+        console.log("Latitude: " + position.coords.latitude)
+        console.log("Longitude: " +position.coords.longitude);
+        let lat = position.coords.latitude;
+    let lng = position.coords.longitude;
+
+        var url = "https://www.mapquestapi.com/geocoding/v1/reverse?key=1rgOn51ZPNAMn2lAQvX8yQkB5rib5hKV";
+        const data = JSON.stringify({
+            
+            location: {
+                latLng: {
+                lat: `${lat}`,
+                lng: `${lng}`
+                }
+            },
+            options: {
+                thumbMaps: false
+            }
+            });
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", url);
+        xhr.responseType = 'json';
+        
+        
+
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            console.log(xhr.status);
+            console.log(xhr.response);
+          
+        
+        }};
+        
+       
+
+        xhr.send(data);
+        xhr.onload = function(){
+        z = xhr.response.results[0].locations[0].adminArea5Type
+         str = JSON.stringify(z)
+        var tik = str.info
+        //    alert(typeof z)
+        //    alert(eval(new String (z))) 
+        console.log(tik)
+        console.log(data);
+        // alert(z)
+        alert(str)
+        // alert(tik)
+        }
+        
+    }
     
+function WeatherSetLoc() {
+    
+    
+    
+    
+    }
+
+
     function WeatherSet() {
-    fetch('http://api.openweathermap.org/data/2.5/weather?q=Kiev&appid=add83517209f776fcced4e6690e72a82')
+        console.log(str)
+    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${str}&appid=add83517209f776fcced4e6690e72a82`)
+
         .then (function (resp) { return resp.json() })
         .then (function (data){
             console.log(data);
@@ -13,46 +86,4 @@ export {WeatherSet,myLocation,WeatherSetLoc};
         }) 
         .catch(function () { })
     }
-    function myLocation() {   
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
-        } else { 
-            x.innerHTML = "Geolocation is not supported by this browser.";
-        }
-        }
-        function showPosition(position) {
-            console.log("Latitude: " + position.coords.latitude)
-            console.log("Longitude: " +position.coords.longitude);
-        }
-
-    function WeatherSetLoc() {
-        var url = "https://www.mapquestapi.com/geocoding/v1/reverse?key=1rgOn51ZPNAMn2lAQvX8yQkB5rib5hKV";
-
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", url);
-
-            xhr.setRequestHeader("Content-Type", "application/json");
-
-            xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) {
-                console.log(xhr.status);
-                console.log(xhr.responseText);
-                
-            }};
-
-            var data = `{
-            "location": {
-                "latLng": {
-                "lat": position.coords.latitude,
-                "lng": position.coords.longitude
-                }
-            },
-            "options": {
-                "thumbMaps": false
-            }
-            }`;
-
-            xhr.send(data);
-            console.log(data);
-        }
 
