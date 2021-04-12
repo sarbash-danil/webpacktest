@@ -1,89 +1,70 @@
-import { Callbacks } from "jquery";
-
-export {WeatherSet,myLocation,WeatherSetLoc};
+export { WeatherSet, myLocation, WeatherSetLoc };
 let z;
 let str;
-function myLocation() {   
+var deleteSymbols;
+
+function myLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
-    } else { 
+    } else {
         x.innerHTML = "Geolocation is not supported by this browser.";
     }
-    }
-    function showPosition(position) {
-        console.log("Latitude: " + position.coords.latitude)
-        console.log("Longitude: " +position.coords.longitude);
-        let lat = position.coords.latitude;
+}
+function showPosition(position) {
+    console.log("Latitude: " + position.coords.latitude)
+    console.log("Longitude: " + position.coords.longitude);
+    let lat = position.coords.latitude;
     let lng = position.coords.longitude;
 
-        var url = "https://www.mapquestapi.com/geocoding/v1/reverse?key=1rgOn51ZPNAMn2lAQvX8yQkB5rib5hKV";
-        const data = JSON.stringify({
-            
-            location: {
-                latLng: {
+    var url = "https://www.mapquestapi.com/geocoding/v1/reverse?key=1rgOn51ZPNAMn2lAQvX8yQkB5rib5hKV";
+    const data = JSON.stringify({
+        location: {
+            latLng: {
                 lat: `${lat}`,
                 lng: `${lng}`
-                }
-            },
-            options: {
-                thumbMaps: false
             }
-            });
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", url);
-        xhr.responseType = 'json';
-        
-        
+        },
+        options: {
+            thumbMaps: false
+        }
+    });
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", url);
+    xhr.responseType = 'json';
 
-        xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("Content-Type", "application/json");
 
-        xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
             console.log(xhr.status);
             console.log(xhr.response);
-          
-        
-        }};
-        
-       
-
-        xhr.send(data);
-        xhr.onload = function(){
-        z = xhr.response.results[0].locations[0].adminArea5Type
-         str = JSON.stringify(z)
-        var tik = str.info
-        //    alert(typeof z)
-        //    alert(eval(new String (z))) 
-        console.log(tik)
-        console.log(data);
-        // alert(z)
-        alert(str)
-        // alert(tik)
         }
+    };
+    xhr.send(data);
+    xhr.onload = function () {
+        z = xhr.response.results[0].locations[0].adminArea5 // тут я написал "Kiev"
+        str = JSON.stringify(z)
+        deleteSymbols = str.split('"').join('')
         
+        console.log(data);
+        alert(deleteSymbols)
     }
-    
+}
 function WeatherSetLoc() {
-    
-    
-    
-    
-    }
 
+}
+function WeatherSet() {
+    deleteSymbols = str.split('"').join('')
+    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${deleteSymbols}&appid=add83517209f776fcced4e6690e72a82`)
 
-    function WeatherSet() {
-        console.log(str)
-    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${str}&appid=add83517209f776fcced4e6690e72a82`)
-
-        .then (function (resp) { return resp.json() })
-        .then (function (data){
+        .then(function (resp) { return resp.json() })
+        .then(function (data) {
             console.log(data);
             document.querySelector('.city').innerHTML = data.name;
             document.querySelector('.temp').innerHTML = Math.round(data.main.temp - 273) + " ℃";
             document.querySelector('.status').innerHTML = data.weather[0].description;
             document.querySelector('.wind').innerHTML = "скорость ветра " + data.wind.speed;
-            document.querySelector('.icon-weather li').innerHTML = `<img scr = "http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png">` ;
-        }) 
+            document.querySelector('.icon-weather li').innerHTML = `<img scr = "http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png">`;
+        })
         .catch(function () { })
-    }
-
+}
