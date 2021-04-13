@@ -3,7 +3,6 @@ export {getLocation, ShowLocalWeather,ShowKievWeather};
 let z;
 let str;
 var deleteSymbols;
-
 function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
@@ -32,8 +31,8 @@ function showPosition(position) {
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
-            console.log(xhr.status);
-            console.log(xhr.response);
+            // console.log(xhr.status);
+            // console.log(xhr.response);
         }
     };
     xhr.send(data);
@@ -41,19 +40,19 @@ function showPosition(position) {
         z = xhr.response.results[0].locations[0].adminArea5 
         str = JSON.stringify(z)
         deleteSymbols = str.split('"').join('')
-        console.log(data);
+        // console.log(data);
     }
 }
 function ShowLocalWeather() {
     fetch(`http://api.openweathermap.org/data/2.5/weather?q=${deleteSymbols}&appid=add83517209f776fcced4e6690e72a82`)
         .then(function (resp) { return resp.json() })
         .then(function (data) {
-            console.log(data);
+            // console.log(data);
             document.querySelector('.city').innerHTML = data.name;
             document.querySelector('.temp').innerHTML = Math.round(data.main.temp - 273) + " ℃";
             document.querySelector('.status').innerHTML = data.weather[0].description;
             document.querySelector('.wind').innerHTML = "скорость ветра " + data.wind.speed;
-            document.querySelector('.icon-weather li').innerHTML = `<img scr = "http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png">`;
+            document.querySelector('.icon-weather li').innerHTML = `<img src = "http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png">`;
         })
         .catch(function () { })
 }
@@ -61,14 +60,11 @@ function ShowKievWeather() {
     fetch(`http://api.openweathermap.org/data/2.5/weather?q=Kiev&appid=add83517209f776fcced4e6690e72a82`)
         .then(function (resp) { return resp.json() })
         .then(function (data) {
-            console.log(data);
             document.querySelector('.city').innerHTML = data.name;
             document.querySelector('.temp').innerHTML = Math.round(data.main.temp - 273) + " ℃";
             document.querySelector('.status').innerHTML = data.weather[0].description;
             document.querySelector('.wind').innerHTML = "скорость ветра " + data.wind.speed;
-            document.querySelector('.icon-weather li').innerHTML = `<img scr = "http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png">`;
+            document.querySelector('.icon-weather').innerHTML = `<img src="http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png">`;
         })
         .catch(function () { })
 }
-
-

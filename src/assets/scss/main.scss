@@ -434,9 +434,12 @@
 			.day{
 				font-size: 30px;
 			}
-			.icon-weather {
-				width: 150px;
-				height: 150px;
+			.icon-weather{
+				img{
+					width: 250px;
+					height: 250px;
+					margin-left: 60px;
+				}
 			}
 			.temp{
 				font-size: 74px;
