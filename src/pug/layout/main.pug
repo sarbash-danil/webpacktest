@@ -45,7 +45,7 @@ html(lang='en')
                 | и предоставляю им все необходимое для того, чтобы добиться
                 | изменений к лучшему. С моей помощью вы научитесь решать
                 | проблемы, которые стоят на вашем пути к цели.
-              a.btn.about__btn(href='') Cвязаться со мной
+              a.btn.about__btn(href='' ) Cвязаться со мной
         section.section-three
           .travel
             .travel__text
@@ -96,26 +96,25 @@ html(lang='en')
             .popup__body
               .weather
                 h2.title.city Dubai
-                p.subtitle.day Sunday
-                p.wind 3
                 
+                p.wind 3
+                .icon-weather
                 p.temp 14
                 p.status sunny
                 
-              .choose-day
-                h2.title choose day
-                .cards
-                  .card.card__weather.card__weather--mon
-                    p.subtitle.subtitle__day--black Monday
-                    p.temp.temp__mon 20
-                  .card.card__weather.card__weather--tue
-                    p.subtitle.subtitle__day--black Tuesday
-                    p.temp.temp__tue 20
-                  .card.card__weather.card__weather--wen
-                    p.subtitle.subtitle__day--black Wensday
-                    p.temp.temp__wen 20
-                a.btn.weather__btn set day
+              .weather--local
+                h2.weather__title You can check weather in your city
+                p.weather__info 
+                  | in the left window by default you can see the weather in Kiev.
+                  | by clicking on the button below, the weather for today
+                  | in your city will be displayed there
+                a.btn.weather__btn Set Location
               a.close
-        include ../includes/modules/footer
+        #preloader.visible
+        p EXAMPLE        
+      .scrollToTop#scrollToTop 
+        p up
+
+    include ../includes/modules/footer
 
     block script

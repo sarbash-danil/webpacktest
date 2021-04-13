@@ -5,6 +5,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 // require('../vendors/jquery.js')
 const $ = require('jquery')
+const axios = require('axios')
 
 const PATHS = {
   src: path.join(__dirname, '../src'),
