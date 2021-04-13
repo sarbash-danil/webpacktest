@@ -1,4 +1,4 @@
-export { WeatherSet, myLocation, WeatherSetLoc };
+export {myLocation, WeatherSetLoc, WeatherSet };
 let z;
 let str;
 var deleteSymbols;
@@ -42,7 +42,7 @@ function showPosition(position) {
     };
     xhr.send(data);
     xhr.onload = function () {
-        z = xhr.response.results[0].locations[0].adminArea5 // тут я написал "Kiev"
+        z = xhr.response.results[0].locations[0].adminArea5 
         str = JSON.stringify(z)
         deleteSymbols = str.split('"').join('')
         
@@ -54,7 +54,7 @@ function WeatherSetLoc() {
 
 }
 function WeatherSet() {
-    deleteSymbols = str.split('"').join('')
+    
     fetch(`http://api.openweathermap.org/data/2.5/weather?q=${deleteSymbols}&appid=add83517209f776fcced4e6690e72a82`)
 
         .then(function (resp) { return resp.json() })

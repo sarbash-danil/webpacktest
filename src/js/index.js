@@ -8,14 +8,12 @@
 
 import{WeatherSet, myLocation,WeatherSetLoc} from './weather.js'
     
- document.querySelector('.card__weather').addEventListener('click', function(){
-    WeatherSet();
-    
-    
+ document.querySelector('.card__weather--tue').addEventListener('click', function(){
+    myLocation();
  })  
  document.querySelector(".card__weather").addEventListener('click', function(){
-    myLocation();
     WeatherSetLoc();
+    WeatherSet();
  }) 
    
 
