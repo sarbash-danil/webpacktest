@@ -13,10 +13,10 @@ function getLocation() {
         
     }
 }
-async function showPosition(position) {
-    const lat = 49.2305236;
-    const lng = 28.4388634;
-    const res = await axios({
+    function showPosition(position) {
+    const lat = position.coords.latitude; //49.2305236;
+    const lng = position.coords.longitude;
+    axios({
         method: 'post',
         url: 'https://www.mapquestapi.com/geocoding/v1/reverse?key=1rgOn51ZPNAMn2lAQvX8yQkB5rib5hKV',
         data:{
