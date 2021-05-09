@@ -6,6 +6,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 // require('../vendors/jquery.js')
 const $ = require('jquery')
 const axios = require('axios')
+require('babel-polyfill');
+
 
 const PATHS = {
   src: path.join(__dirname, '../src'),
