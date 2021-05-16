@@ -2,26 +2,29 @@
 // import{showLocalWeather,getLocation,setWeatherWeather} from './weather.js'
 // import "core-js/stable";
 // import "regenerator-runtime/runtime";
-import "@babel/polyfill";
-import{BtnPopup,BtnDropMenu,BtnScroll} from './actions.js'
 // import { APIservice, } from './weather.js'
-  const axios = require('axios').default;
-  var userCity;
+import "@babel/polyfill";
+import { get } from "jquery";
+import{BtnPopup,BtnDropMenu,BtnScroll} from './actions.js'
+const axios = require('axios').default;
+
   class APIService {
-    constructor() {
-     
+    constructor(position) {
+      this.lat = position.coords.latitude
+      this.lng = position.coords.longitude
     }
-    getLocation(resolve){
+    getLocation(){
+      console.log(position.coords.latitude);
       if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(this.getCityName);
+          console.log(position.coords.latitude)
       } else {
           x.innerHTML = "Geolocation is not supported by this browser.";
       }
     }
-    async getCityName(position) {
-      const lat = 49.2305236; //position.coords.latitude;
-      const lng = 28.4388634; //position.coords.longitude
-      return new Promise((resolve, reject) => {
+   getCityName() {
+      var lat = position.coords.latitude; //49.2305236;
+      var lng = position.coords.longitude;  //28.4388634;
         axios({
           method: 'post',
           url: `https://www.mapquestapi.com/geocoding/v1/reverse?key=1rgOn51ZPNAMn2lAQvX8yQkB5rib5hKV`,
@@ -37,24 +40,25 @@ import{BtnPopup,BtnDropMenu,BtnScroll} from './actions.js'
               }
           }
       })
-        .then((resolve) => {
-            var city = resolve.data.results[0].locations[0].adminArea5
+        .then((responce) => {
+            var city = responce.data.results[0].locations[0].adminArea5 //!
             var cityStr = JSON.stringify(city)
-            var userCity =  cityStr.split('"').join('')
-          console.log(userCity)
+            this.userCity = cityStr.split('"').join('')
             
         })
         .catch((error) =>{
-            console.error(error);
+            // console.error(error);
         })
-      })
     }
   }
-  class Application{
+
+  class Application extends APIService {
     constructor() {
+      super(apiService.userCity)
+      super(apiService.lat,apiService.lng)
     }
     async showLocalWeather(){
-      this.setWeather(userCity) //ne vidit 
+      this.setWeather(apiService.userCity) //ne vidit 
     }
     async showDefaultCity(){
       this.setWeather('Kiev')
@@ -78,9 +82,8 @@ import{BtnPopup,BtnDropMenu,BtnScroll} from './actions.js'
     renderData(){
       document.querySelector('.btn__head').addEventListener('click',() => {
         this.showDefaultCity()
-        
-        apiService.getLocation();
-        apiService.getCityName()
+        apiService.getLocation(position)
+        apiService.getCityName(apiService.lat,apiService.lng)
         
       })  
       document.querySelector(".weather__btn").addEventListener('click',() => {
@@ -88,11 +91,9 @@ import{BtnPopup,BtnDropMenu,BtnScroll} from './actions.js'
       }) 
     }
   }
-
-  const apiService = new APIService('http://api.openweathermap.org/data/2.5/weather');
-  const application = new Application(apiService);
+  const apiService = new APIService;
+  const application = new Application();
   application.renderData()
-
   BtnPopup()
   BtnDropMenu()
   BtnScroll()
