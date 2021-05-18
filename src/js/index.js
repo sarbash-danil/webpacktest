@@ -4,35 +4,70 @@
 // import "regenerator-runtime/runtime";
 // import { APIservice, } from './weather.js'
 import "@babel/polyfill";
-import { get } from "jquery";
+// import { get } from "jquery";
 import{BtnPopup,BtnDropMenu,BtnScroll} from './actions.js'
 const axios = require('axios').default;
 
+  
+class Geolocation {
+  constructor() {
+    this.latitude = 0;
+    this.longitude = 0;
+  }
+
+  getGeoLocation() {
+    if (navigator.geolocation) {
+      this.position = navigator.geolocation.getCurrentPosition(this.setCurrentPosition, error());
+    }
+  }
+  setCurrentPosition(position) {
+    
+    var crd = position.coords;
+    this.setLatitude(crd.latitude);
+    this.setLongitude(crd.longitude);
+    console.log('Your current position is:');
+    console.log(`Latitude : ${crd.latitude}`);
+    console.log(`Longitude: ${crd.longitude}`);
+  }
+  setLatitude(latitude) {
+    this.latitude = latitude;
+  }
+  setLongitude(longitude) {
+    this.longitude = longitude;
+  }
+
+  getLatitude() {
+    console.log(this.latitude);
+    return this.latitude;
+  }
+
+  getLongitude() {
+    return this.longitude;
+  }
+}
   class APIService {
-    constructor(position) {
-      this.lat = position.coords.latitude
-      this.lng = position.coords.longitude
+    constructor() {
     }
-    getLocation(){
-      console.log(position.coords.latitude);
-      if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(this.getCityName);
-          console.log(position.coords.latitude)
-      } else {
-          x.innerHTML = "Geolocation is not supported by this browser.";
-      }
-    }
-   getCityName() {
-      var lat = position.coords.latitude; //49.2305236;
-      var lng = position.coords.longitude;  //28.4388634;
+    // getLocation(){
+    //     console.log(1);
+    //     if (navigator.geolocation) {
+    //       navigator.geolocation.getCurrentPosition(this.getCityName);
+    //     } else {
+    //       showError("Your browser does not support Geolocation!");
+    //     }
+    //   }
+   getCityName(position) {
+      // var lat = position.coords.latitude; //49.2305236;
+      // var lng = position.coords.longitude;  //28.4388634;
+        
         axios({
           method: 'post',
           url: `https://www.mapquestapi.com/geocoding/v1/reverse?key=1rgOn51ZPNAMn2lAQvX8yQkB5rib5hKV`,
           data:{
               location: {
                   latLng: {
-                      lat: `${lat}`,
-                      lng: `${lng}`
+                      lat: `${geo.crd}`,
+                      lng: `${geo.crd}`
                   }
               },
               options: {
@@ -40,6 +75,7 @@ const axios = require('axios').default;
               }
           }
       })
+      
         .then((responce) => {
             var city = responce.data.results[0].locations[0].adminArea5 //!
             var cityStr = JSON.stringify(city)
@@ -49,16 +85,18 @@ const axios = require('axios').default;
         .catch((error) =>{
             // console.error(error);
         })
-    }
-  }
-
+        
+      }
+      
+   }
+  
   class Application extends APIService {
     constructor() {
       super(apiService.userCity)
-      super(apiService.lat,apiService.lng)
+    
     }
     async showLocalWeather(){
-      this.setWeather(apiService.userCity) //ne vidit 
+      this.setWeather(apiService.userCity)
     }
     async showDefaultCity(){
       this.setWeather('Kiev')
@@ -82,8 +120,6 @@ const axios = require('axios').default;
     renderData(){
       document.querySelector('.btn__head').addEventListener('click',() => {
         this.showDefaultCity()
-        apiService.getLocation(position)
-        apiService.getCityName(apiService.lat,apiService.lng)
         
       })  
       document.querySelector(".weather__btn").addEventListener('click',() => {
@@ -93,7 +129,17 @@ const axios = require('axios').default;
   }
   const apiService = new APIService;
   const application = new Application();
+  const geo = new Geolocation;
   application.renderData()
+  // apiService.getLocation()
+  apiService.getCityName()
+  geo.setCurrentPosition()
+  geo.setLatitude(latitude)
+  geo.setLongitude(longitude)
+  geo.getLatitude()
+  geo.getLongitude()
+
+  
   BtnPopup()
   BtnDropMenu()
   BtnScroll()
