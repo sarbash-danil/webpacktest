@@ -8,57 +8,26 @@ import "@babel/polyfill";
 import{BtnPopup,BtnDropMenu,BtnScroll} from './actions.js'
 const axios = require('axios').default;
 
-  
-class Geolocation {
-  constructor() {
-    this.latitude = 0;
-    this.longitude = 0;
-  }
-
-  getGeoLocation() {
-    if (navigator.geolocation) {
-      this.position = navigator.geolocation.getCurrentPosition(this.setCurrentPosition, error());
-    }
-  }
-  setCurrentPosition(position) {
-    
-    var crd = position.coords;
-    this.setLatitude(crd.latitude);
-    this.setLongitude(crd.longitude);
-    console.log('Your current position is:');
-    console.log(`Latitude : ${crd.latitude}`);
-    console.log(`Longitude: ${crd.longitude}`);
-  }
-  setLatitude(latitude) {
-    this.latitude = latitude;
-  }
-  setLongitude(longitude) {
-    this.longitude = longitude;
-  }
-
-  getLatitude() {
-    console.log(this.latitude);
-    return this.latitude;
-  }
-
-  getLongitude() {
-    return this.longitude;
-  }
-}
   class APIService {
     constructor() {
     }
-    // getLocation(){
-    //     console.log(1);
-    //     if (navigator.geolocation) {
-    //       navigator.geolocation.getCurrentPosition(this.getCityName);
-    //     } else {
-    //       showError("Your browser does not support Geolocation!");
-    //     }
-    //   }
+    getPosition(){
+      (this.getLocation=(position)=>{
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(this.getLocation);
+        } else {
+          showError("Your browser does not support Geolocation!");
+        }
+        var lat = position.coords.latitude; 
+        var lng = position.coords.longitude;
+        console.log(lat);
+        console.log(lng);
+      })()
+        
+    }
    getCityName(position) {
-      // var lat = position.coords.latitude; //49.2305236;
-      // var lng = position.coords.longitude;  //28.4388634;
+      // var lat = position.coords.latitude;  // Закоментил, что б не ругалось, вообще должно быть раскоменченное 
+      // var lng = position.coords.longitude; // Закоментил, что б не ругалось, вообще должно быть раскоменченное 
         
         axios({
           method: 'post',
@@ -66,8 +35,8 @@ class Geolocation {
           data:{
               location: {
                   latLng: {
-                      lat: `${geo.crd}`,
-                      lng: `${geo.crd}`
+                      // lat: `${lat}`, // Закоментил, что б не ругалось, вообще должно быть раскоменченное 
+                      // lng: `${lng}`  // Закоментил, что б не ругалось, вообще должно быть раскоменченное 
                   }
               },
               options: {
@@ -93,13 +62,12 @@ class Geolocation {
   class Application extends APIService {
     constructor() {
       super(apiService.userCity)
-    
     }
     async showLocalWeather(){
       this.setWeather(apiService.userCity)
     }
     async showDefaultCity(){
-      this.setWeather('Kiev')
+      this.setWeather('Dubai')
     }
     async setWeather(cityName){
       let weatherResponce = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=add83517209f776fcced4e6690e72a82`)
@@ -129,17 +97,11 @@ class Geolocation {
   }
   const apiService = new APIService;
   const application = new Application();
-  const geo = new Geolocation;
   application.renderData()
   // apiService.getLocation()
   apiService.getCityName()
-  geo.setCurrentPosition()
-  geo.setLatitude(latitude)
-  geo.setLongitude(longitude)
-  geo.getLatitude()
-  geo.getLongitude()
+  apiService.getPosition()
 
-  
   BtnPopup()
   BtnDropMenu()
   BtnScroll()
