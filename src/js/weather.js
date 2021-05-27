@@ -1,67 +1,87 @@
-export {getLocation, ShowLocalWeather,ShowKievWeather};
 const axios = require('axios').default;
 
-let city;
-let cityStr;
-var deleteSymbols;
-
-function getLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-    } else {
-        x.innerHTML = "Geolocation is not supported by this browser.";
-        
-    }
-}
-    function showPosition(position) {
-    const lat = position.coords.latitude; //49.2305236;
-    const lng = position.coords.longitude;
-    axios({
-        method: 'post',
-        url: 'https://www.mapquestapi.com/geocoding/v1/reverse?key=1rgOn51ZPNAMn2lAQvX8yQkB5rib5hKV',
-        data:{
-            location: {
-                latLng: {
-                    lat: `${lat}`,
-                    lng: `${lng}`
-                }
-            },
-            options: {
-                thumbMaps: false
-            }
+    export class APIService {
+        constructor() {
         }
-      })
+        getPosition() {
+          return new Promise(function(resolve, reject){
+            navigator.geolocation.getCurrentPosition(resolve, reject);
+          });
+        }
+          async getCoordinates() {
+            const position = await this.getPosition();
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+    
+            return { lat, lng };
+          }
+       getCityName(lat, lng) {
+            axios({
+              method: 'post',
+              url: `https://www.mapquestapi.com/geocoding/v1/reverse?key=1rgOn51ZPNAMn2lAQvX8yQkB5rib5hKV`,
+              data:{
+                  location: {
+                      latLng: {
+                          lat: lat, 
+                          lng: lng 
+                      }
+                  },
+                  options: {
+                      thumbMaps: false
+                  }
+              }
+          })
+            .then((response) => {
+                var city = response.data.results[0].locations[0].adminArea5 //!
+                var cityStr = JSON.stringify(city)
+                this.userCity = cityStr.split('"').join('')
+                
+            })
+            .catch((error) =>{
+                console.error(error);
+            })
+          }
+       }
       
-    .then(function (response) {
-        city = response.data.results[0].locations[0].adminArea5
-        cityStr = JSON.stringify(city)
-        deleteSymbols = cityStr.split('"').join('')
-        
-        
-    })
-    .catch((error) =>{
-        console.error(error);
-        
-    })
-    
-}
-function ShowLocalWeather() {
-    showKiev(deleteSymbols)
-}
-function ShowKievWeather() {
-    showKiev('Kiev')
-}
-export function showKiev(urlparamter) {
-    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${urlparamter}&appid=add83517209f776fcced4e6690e72a82`)
-    .then(function (resp) { return resp.json() })
-    .then(function (data) {
-        console.log(data);
-        document.querySelector('.city').innerHTML = data.name;
-        document.querySelector('.temp').innerHTML = Math.round(data.main.temp - 273) + " ℃";
-        document.querySelector('.status').innerHTML = data.weather[0].description;
-        document.querySelector('.wind').innerHTML = "скорость ветра " + data.wind.speed;
-        document.querySelector('.icon-weather').innerHTML = `<img src = "http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png">`;
-    })
-    .catch(function () {alert("check your location`s permitions") })
-    
-}
+       export class Application extends APIService {
+        constructor() {
+          super(apiService.userCity)
+        }
+        async showLocalWeather(){
+          this.setWeather(apiService.userCity)
+        }
+        async showDefaultCity(){
+          this.setWeather('Dubai')
+        }
+        async setWeather(cityName){
+          let weatherResponce = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=add83517209f776fcced4e6690e72a82`)
+          let data = weatherResponce.json()
+          .then((data) => {
+              document.querySelector('.city').innerHTML = data.name;
+              document.querySelector('.temp').innerHTML = Math.round(data.main.temp - 273) + " ℃";
+              document.querySelector('.status').innerHTML = data.weather[0].description;
+              document.querySelector('.wind').innerHTML = "скорость ветра " + data.wind.speed;
+              document.querySelector('.icon-weather').innerHTML = `<img src = "http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png">`;
+          })
+          .catch((error) =>{
+            console.error(error);
+        })
+          return data
+        }
+        renderData(){
+          document.querySelector('.btn__head').addEventListener('click',() => {
+            this.showDefaultCity()
+            
+          })  
+          document.querySelector(".weather__btn").addEventListener('click',() => {
+            this.showLocalWeather();
+            apiService.getCoordinates().then(({ lat, lng })=>{
+              apiService.getCityName(lat, lng)
+            });
+            apiService.getPosition()
+          }) 
+        }
+      }
+
+      const apiService = new APIService();
+     

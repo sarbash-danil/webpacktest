@@ -1,20 +1,22 @@
-export {actionBtn};
-function actionBtn() {
-    document.querySelector('.btn__head').addEventListener('click', function() {    
+export let BtnPopup = () => {
+    document.querySelector('.btn__head').addEventListener('click', ()=> {    
         document.querySelector('.popup').classList.add('popup__show');
     })
-    document.querySelector('.dropmenu-toggler').addEventListener('click', function() {    
-        document.querySelector('.dropmenu').classList.add('dropmenu--show');//  не работает toggle 
+    document.querySelector('.close').addEventListener('click', ()=> {
+        document.querySelector('.popup').classList.remove('popup__show');
     })
-    document.querySelector('.menu__link--close').addEventListener('click', function() {  
+}
+export let BtnDropMenu = () => {
+    document.querySelector('.dropmenu-toggler').addEventListener('click', ()=> {    
+        document.querySelector('.dropmenu').classList.add('dropmenu--show'); 
+    })
+    document.querySelector('.menu__link--close').addEventListener('click', ()=> {  
         e.preventDefault(); 
         document.querySelector('.dropmenu').classList.remove('dropmenu--show');
     })
-    document.querySelector('.close').addEventListener('click', function () {
-        document.querySelector('.popup').classList.remove('popup__show');
-    })
-    // scroll to top
-    document.querySelector('#scrollToTop').addEventListener('click', function (){
+}
+export let BtnScroll = () =>{
+    document.querySelector('#scrollToTop').addEventListener('click', ()=>{
         event.preventDefault();
         var top = Math.max(document.body.scrollTop,document.documentElement.scrollTop);
         if(top > 600) {
@@ -22,7 +24,7 @@ function actionBtn() {
         } 
         return false;
     });
+}  
     setTimeout(function () {
         document.querySelector('.scrollToTop').classList.add('scrollToTop__show');
     },7000)
-}

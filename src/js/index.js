@@ -1,30 +1,23 @@
 // Main js file
-// import "jquery"
-// import "popper.js"
-// import $ from "jquery"
-// window.jQuery = $;
-// window.$ = $
+import "@babel/polyfill";
+import{BtnPopup,BtnDropMenu,BtnScroll} from './actions.js'
+import{Application} from './weather.js'
 
-import{ShowLocalWeather, getLocation,ShowKievWeather} from './weather.js'
-import{actionBtn,} from './actions.js'
-    actionBtn()
-    ShowKievWeather()
-document.querySelector('.btn__head').addEventListener('click', function(){
-    getLocation();
- })  
-document.querySelector(".weather__btn").addEventListener('click', function(){
-    ShowLocalWeather();
- }) 
-function loadData() {
-    return new Promise((resolve, reject) => {
-      setTimeout(resolve, 2000);
-    })
-  }
+const application = new Application();
+  application.renderData()
+  
+  BtnPopup()
+  BtnDropMenu()
+  BtnScroll()
+  
+  let loadData = () =>{
+      return new Promise((resolve, reject) => {
+        setTimeout(resolve, 2000);
+      })
+    }
   loadData()
     .then(() => {
       let preloaderEl = document.getElementById('preloader');
       preloaderEl.classList.add('hidden');
       preloaderEl.classList.remove('visible');
     });
-
-
