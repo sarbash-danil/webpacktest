@@ -1,13 +1,7 @@
 // Main js file
-// import{showLocalWeather,getLocation,setWeatherWeather} from './weather.js'
-// import "core-js/stable";
-// import "regenerator-runtime/runtime";
-// import { APIservice, } from './weather.js'
 import "@babel/polyfill";
-// import { get } from "jquery";
 import{BtnPopup,BtnDropMenu,BtnScroll} from './actions.js'
-import{APIService, Application} from './weather.js'
-
+import{Application} from './weather.js'
 
 const application = new Application();
   application.renderData()

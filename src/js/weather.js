@@ -32,7 +32,6 @@ const axios = require('axios').default;
               }
           })
             .then((response) => {
-              console.log(response.data);
                 var city = response.data.results[0].locations[0].adminArea5 //!
                 var cityStr = JSON.stringify(city)
                 this.userCity = cityStr.split('"').join('')

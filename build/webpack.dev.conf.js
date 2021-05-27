@@ -1,7 +1,6 @@
 const webpack =  require('webpack')
 const merge = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.conf')
-const $ = require('jquery')
 const axios = require('axios')
 
 const devWebpackConfig = merge(baseWebpackConfig, {
@@ -21,11 +20,6 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       filename: '[file].map'
     }),
     
-    new webpack.ProvidePlugin({
-      $: './jquery-3.6.0',
-  jQuery: './jquery-3.6.0',
-      
-    }),
     
   ]
 })
